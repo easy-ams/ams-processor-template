@@ -221,7 +221,7 @@ sh ams-start.sh <工程目录绝对路径> <port> <workers> <timeout>
 1.  预置ams_engine引擎，无需开发Web部分代码，只需关注推理函数代码开发  
 2.  将通用流程标准化，可变部分配置化，灵活适用多种场景  
 
-####参考  
+#### 参考  
 [gitlab CI/CD](https://zhuanlan.zhihu.com/p/159709306)  
 [gitlab-ci.yml](https://docs.gitlab.com/ee/ci/yaml/includes.)  
 [阿里云PAI平台](https://help.aliyun.com/document_detail/113696.html?spm=a2c4g.11186623.6.745.58006125dhhphT)  
