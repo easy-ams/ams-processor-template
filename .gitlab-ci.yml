@@ -1,0 +1,13 @@
+stages:
+  - build
+build:
+  stage: build
+  tags:
+    - python3
+  script:
+#    - sh package.sh
+    - pip3 download -r requirements.txt -d ./lib
+    - tar -zcvf $PACKAGE_NAME.tar.gz * --exclude=target
+  artifacts:
+    paths:
+      - ./*.tar.gz

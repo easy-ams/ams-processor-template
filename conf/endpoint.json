@@ -1,0 +1,6 @@
+[
+  {
+    "processor_script_name": "customized_processor",
+    "processor_class_name": "Inference"
+  }
+]
