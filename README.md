@@ -1,7 +1,7 @@
 ### AMS Processor Template  
 
 #### 介绍
-推理代码开发模版，需搭配[ams-engine](https://gitee.com/easy-ams/ams-engine.git )使用.提供推理服务开发标准,简化推理服务研发及工程部署过程,让研发人员专注于核心工作. 
+推理代码开发模版，需搭配[ams-engine](https://gitee.com/easy-ams/ams-engine.git )使用。提供推理服务开发标准，简化推理服务研发及工程部署过程，让研发人员专注于核心工作。  
 
 #### 框架说明
 
@@ -19,7 +19,7 @@ ams-processor-template|
 
 >文件说明  
 
-src/base_processor.py:抽象基类,定义基础方法.详见源码
+src/base_processor.py：抽象基类，定义基础方法。详见源码
 ```python
 import six
 import time
@@ -108,7 +108,7 @@ class BaseProcessor(object):
 
 ```
 
-src/customized_processor.py:base_processor的实现类,必须提供,详见源码
+src/customized_processor.py：base_processor的实现类，详见源码
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -144,7 +144,7 @@ class Inference(BaseProcessor):
     def postprocess(self, data):
         return data
 ```
-src/test.py:本地测试示例
+src/test.py：本地测试示例
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -158,7 +158,7 @@ if __name__ == '__main__':
     ams.app.run('0.0.0.0', 8088, debug=True, threaded=True)
 
 ```
-conf/config.properties:基础配置,可增加自定义参数
+conf/config.properties：基础配置，可增加自定义参数
 ```properties
 #项目名称名称，可编辑修改
 project_name=customized_processor
@@ -168,7 +168,7 @@ default_model_path=model
 enable_virtualenv=true
 ```
 
-conf/endpoint.json:接口配置,与推理脚本对应,支持多个推理脚本,提供多个服务接口  
+conf/endpoint.json：接口配置，与推理脚本对应，支持多个推理脚本，提供多个服务接口  
 ```json
 [
   {
@@ -178,12 +178,12 @@ conf/endpoint.json:接口配置,与推理脚本对应,支持多个推理脚本,�
 ]
 ```
 
-bin/setup.sh:自动配置环境脚本,一般不需修改,详细介绍见源码  
+bin/setup.sh：自动配置环境脚本，一般不需修改，详细介绍见源码  
 
-/package.sh:自动打包脚本,可自定义打包过程,目的是将工程代码文件及依赖软件打包为离线文件,可迁移部署.  
+/package.sh：自动打包脚本，可自定义打包过程，目的是将工程代码文件及依赖软件打包为离线文件，可迁移部署。  
 
-/.gitlab-ci.yml:gitlab ci配置,可自定义,如不使用可忽略  
-/requirements.txt:Python依赖配置,可自定义  
+/.gitlab-ci.yml：gitlab ci配置，可自定义，如不使用可忽略  
+/requirements.txt：Python依赖配置，可自定义  
 ```properties
 numpy
 tensorflow==1.13.1
@@ -192,30 +192,30 @@ tensorflow==1.13.1
 #### 使用思路
 *自行根据实际需求调整使用方式*  
 1.  背景  
-用户需要将模型部署到生产内网环境,对外提供推理接口.  
+用户需要将模型部署到生产内网环境，对外提供推理接口.  
 2.  开发  
-基于此工程提供的代码模版进行二次开发,按照上述要求修改配置文件.  
+基于此工程提供的代码模版进行二次开发，按照上述要求修改配置文件.  
 3.  打包  
-自动打包:如公司内部有CI工具可考虑集成使用,实现自动化打包.  
-手动打包:本地开发环境下,将依赖文件下载至lib目录,然后将工程压缩打包  
+自动打包:如公司内部有CI工具可考虑集成使用，实现自动化打包.  
+手动打包:本地开发环境下，将依赖文件下载至lib目录，然后将工程压缩打包  
 4.  部署  
-自动部署:如公司内部有CD工具可考虑集成使用,实现自动部署  
-手动部署:将部署包拷贝至服务器进行解压,执行部署脚本  
+自动部署:如公司内部有CD工具可考虑集成使用，实现自动部署  
+手动部署:将部署包拷贝至服务器进行解压，执行部署脚本  
 5.  启动  
-Python虚拟运行环境,需激活环境后运行启动命令  
+Python虚拟运行环境，需激活环境后运行启动命令  
 ```shell script
 #激活环境
 source virtualenv/bin/activate
 #执行启动命令
 sh ams-start.sh <工程目录绝对路径> <port> <workers> <timeout>
 ```
-标准环境,直接执行启动命令
+标准环境，直接执行启动命令
 ```shell script
 #执行启动命令
 sh ams-start.sh <工程目录绝对路径> <port> <workers> <timeout>
 ```
 |6.  测试  
-提供HTTP接口,支持多种数据格式  
+提供HTTP接口，支持多种数据格式  
 
 #### 特性
 1.  预置ams_engine引擎，无需开发Web部分代码，只需关注推理函数代码开发  
